@@ -263,6 +263,7 @@ def extract_links_regex(text):
 from pikepdf import Pdf, PdfImage
 
 def extract_images_pike(file):
+   """many errors, should be tested"""
    example = Pdf.open(file)
    for i,page in enumerate(example.pages) :
        rawimage = page.images['/Im0']
@@ -302,7 +303,120 @@ def extract_images(file):
         
 
 ###############################################################################
+# importing required modules
 
+import PyPDF2
+ 
+ 
+
+def PDFmerge(pdfs, output):
+
+    # creating pdf file merger object pdf merger class
+    pdfMerger = PyPDF2.PdfFileMerger()
+    # appending pdfs one by one
+    for pdf in pdfs:
+        pdfMerger.append(pdf)
+    # writing combined pdf to output pdf file
+    with open(output, 'wb') as f:
+        pdfMerger.write(f)
+ 
+ 
+def PDFsplit(pdf, splits):
+
+    # creating input pdf file object
+    name = Path(pdf).stem 
+    splits=[i-1 for i in splits]
+    pdfFileObj = open(pdf, 'rb')
+    # creating pdf reader object
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+    # starting index of first slice
+    start = 0
+    # starting index of last slice
+    end = splits[0]
+
+    for i in range(len(splits)+1):
+        # creating pdf writer object for (i+1)th split
+        pdfWriter = PyPDF2.PdfFileWriter()
+        # output pdf file name
+        outputpdf = name+ str(start+1)+"-"+str(end) + '.pdf'
+        # adding pages to pdf writer object
+        for page in range(start,end):
+            pdfWriter.addPage(pdfReader.getPage(page))
+        # writing split pdf pages to pdf file
+        with open(outputpdf, "wb") as f:
+            pdfWriter.write(f)
+        # interchanging page split start position for next split
+        start = end
+        try:
+            # setting split end position for next split
+            end = splits[i+1]
+        except IndexError:
+            # setting split end position for last split
+            end = pdfReader.numPages
+    # closing the input pdf file object
+
+    pdfFileObj.close()
+
+def PDFsplit2(pdf, pages): 
+    """We need to verify the index"""
+    pages=[i-1 for i in pages]
+    # splits is the list of pages positions (starting from 1)
+    name = Path(pdf).stem 
+    pdfFileObj = open(pdf, 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+    if set(pages).issubset(set(range(pdfReader.getNumPages()))):
+        pdfWriter = PyPDF2.PdfFileWriter()
+        # output pdf file name
+        outputpdf = name+ "-split" + '.pdf'
+        # adding pages to pdf writer object
+        for page in pages:
+            pdfWriter.addPage(pdfReader.getPage(page))
+        # writing split pdf pages to pdf file
+        with open(outputpdf, "wb") as f:
+            pdfWriter.write(f)
+        pdfFileObj.close()
+    else :
+        #we might change here
+        pdfFileObj.close()
+        raise IndexError()
+                
+####################################################################
+#water_mark
+
+def add_watermark(wmFile, pdf,pages):
+    """takes water mark pdf, we can add the option of image but we will have to deal with the positionning"""
+    pages=[i-1 for i in pages]
+    # opening watermark pdf file
+    wmFileObj = open(wmFile, 'rb')
+    pdfReaderwater = PyPDF2.PdfFileReader(wmFileObj) 
+
+    # creating pdf File object of original pdf
+    pdfFileObj = open(pdf, 'rb')
+    pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+    
+    name = Path(pdf).stem 
+    newFileName = "watermarked_" + name + ".pdf"
+    pdfWriter = PyPDF2.PdfFileWriter()
+    
+    for page in range(pdfReader.numPages):
+        pageObj= pdfReader.getPage(page)
+        if page in pages :
+        # creating watermarked page object
+            pageObj.mergePage(pdfReaderwater.getPage(0))
+            pdfWriter.addPage(pageObj)
+        else :
+            pdfWriter.addPage(pageObj)
+     
+    newFile = open(newFileName, 'wb')
+    pdfWriter.write(newFile)
+
+    # closing the watermark pdf file object
+    wmFileObj.close()
+    pdfFileObj.close()
+    newFile.close()
+ 
+
+###############################################################################
 
 ###############################################################################
 file = r"C:\Users\anass\Programmation\PDF\p2.pdf"   
