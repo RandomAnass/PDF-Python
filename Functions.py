@@ -417,6 +417,50 @@ def add_watermark(wmFile, pdf,pages):
  
 
 ###############################################################################
+###############################################################################
+
+
+#pdfReader = PyPDF2.PdfFileReader(open('encrypted.pdf', 'rb'))
+#pdfReader.isEncrypted
+#pdfReader.decrypt('rosebud')
+
+
+#encryption
+
+def encrypt_PDF(file, password):
+    pdf_in_file = open(file,'rb')  
+    pdf= PdfFileReader(pdf_in_file)
+    print(pdf.isEncrypted)
+    output = PdfFileWriter()
+    for i in range(pdf.numPages):
+    	output.addPage(pdf.getPage(i))
+    	output.encrypt(password)
+    
+    with open(Path(file).stem + "_encrypted" +".pdf", "wb") as outputStream:
+        output.write(outputStream)
+        
+    pdf_in_file.close()
+    
+
+def decrypted_PDF(file, password):
+    pdf_in_file = open(file,'rb')  
+    pdf= PdfFileReader(pdf_in_file)
+    print(pdf.isEncrypted)
+    if pdf.isEncrypted :
+        pdf.decrypt(password)
+        output = PdfFileWriter()
+        for i in range(pdf.numPages):
+        	output.addPage(pdf.getPage(i))
+    
+        with open(Path(file).stem + "_decrypted" +".pdf", "wb") as outputStream:
+            output.write(outputStream)
+            
+        pdf_in_file.close()
+    else:
+    # If file is not encrypted
+        print("File already decrypted.")
+
+
 
 ###############################################################################
 file = r"C:\Users\anass\Programmation\PDF\p2.pdf"   
