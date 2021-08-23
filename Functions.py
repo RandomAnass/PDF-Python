@@ -410,7 +410,7 @@ def add_watermark(wmFile, pdf,pages):
     newFile = open(newFileName, 'wb')
     pdfWriter.write(newFile)
 
-    # closing the watermark pdf file object
+    # closing 
     wmFileObj.close()
     pdfFileObj.close()
     newFile.close()
