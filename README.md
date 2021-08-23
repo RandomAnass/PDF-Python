@@ -4,6 +4,7 @@ $ pip install Filetype==1.0.7 numpy==1.19.4 opencv-python==4.4.0.46 pandas==1.1.
 https://www.thepythoncode.com/article/extract-text-from-images-or-scanned-pdf-python
 
 to do : https://stackoverflow.com/questions/47533875/how-to-extract-table-as-text-from-the-pdf-using-python
+https://stackoverflow.com/a/61431697/14580023
 
 also here : https://www.opcito.com/blogs/extracting-text-from-images-with-tesseract-ocr-opencv-and-python
 
