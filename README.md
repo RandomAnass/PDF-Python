@@ -19,3 +19,6 @@ https://www.thepythoncode.com/article/extract-pdf-tables-in-python-camelot
 https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/
 https://www.easytweaks.com/pandas-save-to-excel-mutiple-sheets/
 https://github.com/camelot-dev/camelot/wiki/Comparison-with-other-PDF-Table-Extraction-libraries-and-tools
+
+interface:
+https://www.pythonguis.com/examples/python-pdf-report-generator/
