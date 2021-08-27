@@ -22,3 +22,7 @@ https://github.com/camelot-dev/camelot/wiki/Comparison-with-other-PDF-Table-Extr
 
 interface:
 https://www.pythonguis.com/examples/python-pdf-report-generator/
+
+
+The Tk documentation about validation might help :
+https://www.tcl.tk/man/tcl8.5/TkCmd/entry.html#M-validate
