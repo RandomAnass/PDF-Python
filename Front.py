@@ -400,15 +400,15 @@ def Open_images_Window():
 
    
 def display2():
-    messagebox.showinfo("Xiith.com", "You clicked 2")
+    messagebox.showinfo("----", "You clicked 2")
 
 
 def display3():
-    messagebox.showinfo("Xiith.com", "You clicked 3")
+    messagebox.showinfo("----", "You clicked 3")
 
 
 def display4():
-    messagebox.showinfo("Xiith.com", "You clicked 4")
+    messagebox.showinfo("----", "You clicked 4")
 
 
 
@@ -426,7 +426,7 @@ main_window.iconbitmap('icon.ico')
 #Import the image using PhotoImage function
 #Let us create a label for button event
 
-WIDTH, HEIGHT = 300, 300
+WIDTH, HEIGHT = 250, 250
 img1 = Image.open("button1.png").resize((WIDTH, HEIGHT), Image.ANTIALIAS)
 click_btn1 = ImageTk.PhotoImage(img1)
 img_label1= tk.Label(image=click_btn1)
