@@ -17,7 +17,7 @@ import os
 from webbrowser import open_new
 
 def display1():
-    messagebox.showinfo("Xiith.com", "You clicked 1")
+    messagebox.showinfo("----", "You clicked 1")
 
 global filepathforinfo
 
