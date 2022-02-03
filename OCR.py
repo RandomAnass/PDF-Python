@@ -432,15 +432,6 @@ def ocr_folder(**kwargs):
 
 
 
-input_path = r"C:\Users\anass\Programmation\PDF\p.pdf"
-output_path = "outout"
-search_str = None
-pages = str(list(range(0,10)))
-highlight_readable_text = True
-action = 'Highlight'
-show_comparison = True
-generate_output = True
-
 
 #ocr_on_image( input_path: str, search_str: str ,  highlight_readable_text: bool = False, action: str = 'Highlight', show_comparison: bool = False , generate_output: bool = True)
 #ocr_img(None ,input_path , search_str ,highlight_readable_text, action , show_comparison , generate_output )
