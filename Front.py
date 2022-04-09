@@ -4,7 +4,7 @@ Created on Fri Aug 20 02:15:40 2021
 
 @author: anass
 """
-from Functions import get_info ,  extract_text , extract_table , extract_table_tabula , extract_links, extract_images
+from Functions import get_info ,  extract_text , extract_table , extract_table_tabula , extract_links, extract_images,add_watermark
 from PyPDF2 import PdfFileReader
 import tkinter.filedialog
 import tkinter as tk
@@ -395,10 +395,24 @@ def Open_images_Window():
     text = extract_images(filepath)    
     messagebox.showinfo("Images extracted successfully \n", text + "Extracted Images are saved in : " + os.path.dirname(filepath) )
 
+# on a button click
+def Open_watermark_Window():
+    """dont show the buttons if cancelled"""
+    filetypes=[('PDF files', '*.pdf')]
+
+    filepath_add_watermark = tk.filedialog.askopenfilename(  title='Open the file to add the watermark to',initialdir='/', filetypes=filetypes)
+
+    while not filepath_add_watermark:
+        filepath_add_watermark = tk.filedialog.askopenfilename(  title='Open the file to add the watermark to',initialdir='/', filetypes=filetypes)
+    
+    filepath_watermark = tk.filedialog.askopenfilename(  title='Open the pdf file of the watermark',initialdir='/', filetypes=filetypes)
+    pages = [1]
+    add_watermark(filepath_watermark, filepath_add_watermark,pages)
+
+    messagebox.showinfo("Water mark added\n",  "The watermarked file is saved here : " + os.path.dirname(filepath_add_watermark) )
 
 
 
-   
 def display2():
     messagebox.showinfo("----", "You clicked 2")
 
@@ -486,7 +500,7 @@ b3 = tk.Button(main_window, text="Tables extraction",image=click_btn3, command=O
 b3.grid(row=1,column=4)
 b4 = tk.Button(main_window, text="Links extraction",image=click_btn4, command=Open_Links_Window)
 b4.grid(row=1,column=6)
-b5 = tk.Button(main_window, text="Watermark",image=click_btn5, command=display1)
+b5 = tk.Button(main_window, text="Watermark",image=click_btn5, command=Open_watermark_Window)
 b5.grid(row=3,column=0)
 b6 = tk.Button(main_window, text="Merge",image=click_btn6, command=display2)
 b6.grid(row=3,column=2)

@@ -405,9 +405,9 @@ def add_watermark(wmFile, pdf,pages):
     # creating pdf File object of original pdf
     pdfFileObj = open(pdf, 'rb')
     pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-    
+
     name = Path(pdf).stem 
-    newFileName = "watermarked_" + name + ".pdf"
+    newFileName = os.path.dirname(pdf)+"/watermarked_" + name + ".pdf"
     pdfWriter = PyPDF2.PdfFileWriter()
     
     for page in range(pdfReader.numPages):
@@ -418,7 +418,7 @@ def add_watermark(wmFile, pdf,pages):
             pdfWriter.addPage(pageObj)
         else :
             pdfWriter.addPage(pageObj)
-     
+    print(newFileName)
     newFile = open(newFileName, 'wb')
     pdfWriter.write(newFile)
 
