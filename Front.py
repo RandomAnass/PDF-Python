@@ -22,7 +22,7 @@ def display1():
 global filepathforinfo
 
 
-# on a button click
+# on a button clickpip uninstall pathlib
 def Open_Information_Window():
     filetypes=[('PDF files', '*.pdf')]
     filepathforinfo = tk.filedialog.askopenfilename(  title='Open a file to extract information from',initialdir='/', filetypes=filetypes)

@@ -418,7 +418,7 @@ def add_watermark(wmFile, pdf,pages):
             pdfWriter.addPage(pageObj)
         else :
             pdfWriter.addPage(pageObj)
-    print(newFileName)
+
     newFile = open(newFileName, 'wb')
     pdfWriter.write(newFile)
 
