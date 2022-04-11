@@ -1,10 +1,13 @@
 # PDF-Python
 ![image](https://user-images.githubusercontent.com/51008418/159536530-cee27e38-4766-4be8-ab8e-8285e5995a08.png)
 
+- To produce the exe file use : __pyinstaller --clean --windowed Front.py__
+
+
  To see : https://stackoverflow.com/questions/47692213/reducing-size-of-pyinstaller-exe
  
- 
- 
+https://github.com/pyinstaller/pyinstaller/issues/5004
+
 https://docs.microsoft.com/en-us/office/vba/api/excel.workbook.saveas
 $ pip install Filetype==1.0.7 numpy==1.19.4 opencv-python==4.4.0.46 pandas==1.1.4 Pillow==8.0.1 PyMuPDF==1.18.9 pytesseract==0.3.7
 https://automatetheboringstuff.com/chapter13/
