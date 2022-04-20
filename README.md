@@ -1,4 +1,4 @@
-# PDF-Python
+# Graphical user interface program to work on PDF files
 ![image](https://user-images.githubusercontent.com/51008418/159536530-cee27e38-4766-4be8-ab8e-8285e5995a08.png)
 
 - To produce the exe file use : __pyinstaller --clean --windowed Front.py__
